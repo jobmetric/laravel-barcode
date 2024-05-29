@@ -25,6 +25,9 @@
         "jobmetric/laravel-package-core": "^1.7"
     },
     "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
         "psr-4": {
             "JobMetric\\Barcode\\": "src/",
             "JobMetric\\Barcode\\Factories\\": "database/factories/"
