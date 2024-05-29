@@ -1,0 +1,46 @@
+{
+    "name": "jobmetric/laravel-barcode",
+    "description": "This is a barcode management package for Laravel that you can use in your projects.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "jobmetric",
+        "package",
+        "barcode",
+        "management"
+    ],
+    "homepage": "https://doc.jobmetric.net/package/laravel-barcode",
+    "authors": [
+        {
+            "name": "Majid Mohammadian",
+            "email": "majeedmohammadian@gmail.com",
+            "homepage": "https://www.linkedin.com/in/majidmohammadian/",
+            "role": "Full Stack Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.1",
+        "laravel/framework": ">=9.19",
+        "jobmetric/laravel-package-core": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "JobMetric\\Barcode\\": "src/",
+            "JobMetric\\Barcode\\Factories\\": "database/factories/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JobMetric\\Barcode\\BarcodeServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "support": {
+        "issues": "https://github.com/jobmetric/laravel-barcode/issues",
+        "forum": "https://twitter.com/jobmetric",
+        "source": "https://github.com/jobmetric/laravel-barcode"
+    }
+}
