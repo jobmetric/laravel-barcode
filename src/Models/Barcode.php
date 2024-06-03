@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property mixed barcodeable_type
  * @property mixed type
  * @property mixed value
+ * @property mixed created_at
  */
 class Barcode extends Pivot
 {
