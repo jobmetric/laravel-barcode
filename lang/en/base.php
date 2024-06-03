@@ -21,6 +21,7 @@ return [
         'created' => 'The barcode was created successfully.',
         'updated' => 'The barcode was updated successfully.',
         'deleted' => 'The barcode was deleted successfully.',
+        'all_deleted' => 'All barcodes were deleted successfully.',
     ],
 
 ];
