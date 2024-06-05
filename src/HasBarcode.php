@@ -70,7 +70,7 @@ trait HasBarcode
      */
     public function storeBarcode(string $type, string $value): array
     {
-        if (!in_array($type, TableBarcodeFieldTypeEnum::array())) {
+        if (!in_array($type, TableBarcodeFieldTypeEnum::values())) {
             throw new BarcodeTypeNotFoundException($type);
         }
 
@@ -80,6 +80,8 @@ trait HasBarcode
         $barcode = $this->barcode()->where('type', $type)->first();
 
         $mode = $barcode ? 'updated' : 'created';
+        $status = $barcode ? 200 : 201;
+
         if ($barcode) {
             $barcode->update([
                 'value' => $value,
@@ -100,7 +102,7 @@ trait HasBarcode
             'message' => trans('barcode::base.messages.' . $mode),
             'data' => BarcodeResource::make($barcode),
             'mode' => $mode,
-            'status' => 200
+            'status' => $status
         ];
     }
 
@@ -130,7 +132,7 @@ trait HasBarcode
      */
     public function forgetBarcode(string $type): array
     {
-        if (!in_array($type, TableBarcodeFieldTypeEnum::array())) {
+        if (!in_array($type, TableBarcodeFieldTypeEnum::values())) {
             throw new BarcodeTypeNotFoundException($type);
         }
 
@@ -198,57 +200,5 @@ trait HasBarcode
                 'status' => 200
             ];
         }
-    }
-
-    /**
-     * get the barcode type custom
-     */
-    public function getBarcodeTypeCustom(): ?string
-    {
-        /**
-         * @var Barcode $barcode
-         */
-        $barcode = $this->barcode()->where('type', TableBarcodeFieldTypeEnum::CUSTOM())->first();
-
-        return $barcode?->value;
-    }
-
-    /**
-     * get the barcode type ean_b
-     */
-    public function getBarcodeTypeEanB(): ?string
-    {
-        /**
-         * @var Barcode $barcode
-         */
-        $barcode = $this->barcode()->where('type', TableBarcodeFieldTypeEnum::EAN_B())->first();
-
-        return $barcode?->value;
-    }
-
-    /**
-     * get the barcode type ean_8
-     */
-    public function getBarcodeTypeEan8(): ?string
-    {
-        /**
-         * @var Barcode $barcode
-         */
-        $barcode = $this->barcode()->where('type', TableBarcodeFieldTypeEnum::EAN_8())->first();
-
-        return $barcode?->value;
-    }
-
-    /**
-     * get the barcode type qrcode
-     */
-    public function getBarcodeTypeQrcode(): ?string
-    {
-        /**
-         * @var Barcode $barcode
-         */
-        $barcode = $this->barcode()->where('type', TableBarcodeFieldTypeEnum::QRCODE())->first();
-
-        return $barcode?->value;
     }
 }
