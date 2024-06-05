@@ -15,6 +15,13 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class Barcode extends Pivot
 {
+    const UPDATED_AT = null;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
         'barcodeable_id',
         'barcodeable_type',
