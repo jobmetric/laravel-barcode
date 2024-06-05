@@ -12,6 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed type
  * @property mixed value
  * @property mixed created_at
+ * @property mixed barcodeable_resource
  */
 class BarcodeResource extends JsonResource
 {
@@ -29,6 +30,8 @@ class BarcodeResource extends JsonResource
             'type' => $this->type,
             'value' => $this->value,
             'created_at' => $this->created_at,
+
+            'barcodeable' => $this?->barcodeable_resource
         ];
     }
 }
