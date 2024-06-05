@@ -5,6 +5,7 @@ namespace JobMetric\Barcode\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use JobMetric\Barcode\Events\BarcodeableResourceEvent;
 
 /**
  * @property mixed barcodeable_id
@@ -86,5 +87,13 @@ class Barcode extends Pivot
         }
 
         return $query;
+    }
+
+    public function getBarcodeableResourceAttribute()
+    {
+        $event = new BarcodeableResourceEvent($this->barcodeable);
+        event($event);
+
+        return $event->resource;
     }
 }

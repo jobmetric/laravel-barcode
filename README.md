@@ -125,6 +125,46 @@ $product->storeBarcode('ean13', '1234567890124');
 
 In this example, we retrieved a product from the database and then updated the barcode for the product using the `storeBarcode` method. The first parameter is the barcode type, and the second parameter is the new barcode value.
 
+### Add barcodeable attribute in Resource
+
+In the barcode resource, there is a field called `bacodeable` that can display your model, but it must be set as follows.
+
+First, you create a listener for the model you want to display in the barcode resource.
+
+```php
+php artisan make:listener AddProductResourceToBarcodableResourceListener
+```
+
+Then, you add the following code to the listener.
+
+```php
+use JobMetric\Barcode\Events\BarcodeableResourceEvent;
+
+class AddProductResourceToBarcodableResourceListener
+{
+    public function handle(BarcodeableResourceEvent $event)
+    {
+        $barcodeable = $event->barcodeable;
+
+        if ($barcodeable instanceof \App\Models\Product) {
+            $event->resource = new \App\Http\Resources\ProductResource($barcodeable);
+        }
+    }
+}
+```
+
+Finally, you add the listener to the `EventServiceProvider` class.
+
+```php
+protected $listen = [
+    \JobMetric\Barcode\Events\BarcodeableResourceEvent::class => [
+        \App\Listeners\AddProductResourceToBarcodableResourceListener::class,
+    ],
+];
+```
+
+The work is done, now when the BarcodeResource is called and if the ProductResource should be returned, the details of that resource will be displayed in the barcodeable attribute.
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.

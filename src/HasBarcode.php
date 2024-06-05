@@ -9,6 +9,7 @@ use JobMetric\Barcode\Enums\TableBarcodeFieldTypeEnum;
 use JobMetric\Barcode\Events\BarcodeForgetEvent;
 use JobMetric\Barcode\Events\BarcodeStoredEvent;
 use JobMetric\Barcode\Events\BarcodeUpdateEvent;
+use JobMetric\Barcode\Exceptions\BarcodeNotFoundException;
 use JobMetric\Barcode\Exceptions\BarcodeTypeNotFoundException;
 use JobMetric\Barcode\Http\Resources\BarcodeResource;
 use JobMetric\Barcode\Models\Barcode;
@@ -39,6 +40,34 @@ trait HasBarcode
     public function barcode(): MorphOne
     {
         return $this->morphOne(Barcode::class, 'barcodeable');
+    }
+
+    /**
+     * search for barcode
+     *
+     * @param string $value
+     * @param string|null $type
+     *
+     * @return AnonymousResourceCollection
+     * @throws Throwable
+     */
+    public function searchBarcode(string $value, string $type = null): AnonymousResourceCollection
+    {
+        if ($type) {
+            if (!in_array($type, TableBarcodeFieldTypeEnum::values())) {
+                throw new BarcodeTypeNotFoundException($type);
+            }
+
+            $barcode = $this->barcode()->where('type', $type)->where('value', 'like, %' . $value . '%')->get();
+        } else {
+            $barcode = $this->barcode()->where('value', 'like, %' . $value . '%')->get();
+        }
+
+        if (!$barcode) {
+            throw new BarcodeNotFoundException($type);
+        }
+
+        return BarcodeResource::collection($barcode);
     }
 
     /**
