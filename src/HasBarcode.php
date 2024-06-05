@@ -4,6 +4,7 @@ namespace JobMetric\Barcode;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JobMetric\Barcode\Enums\TableBarcodeFieldTypeEnum;
 use JobMetric\Barcode\Events\BarcodeForgetEvent;
 use JobMetric\Barcode\Events\BarcodeStoredEvent;
@@ -38,6 +39,24 @@ trait HasBarcode
     public function barcode(): MorphOne
     {
         return $this->morphOne(Barcode::class, 'barcodeable');
+    }
+
+    /**
+     * get barcodes
+     *
+     * @param string|null $type
+     *
+     * @return AnonymousResourceCollection
+     */
+    public function getBarcode(string $type = null): AnonymousResourceCollection
+    {
+        if ($type) {
+            $barcodes = $this->barcode()->where('type', $type)->get();
+        } else {
+            $barcodes = $this->barcode()->get();
+        }
+
+        return BarcodeResource::collection($barcodes);
     }
 
     /**
@@ -83,6 +102,22 @@ trait HasBarcode
             'mode' => $mode,
             'status' => 200
         ];
+    }
+
+    /**
+     * has barcode
+     *
+     * @param string|null $type
+     *
+     * @return bool
+     */
+    public function hasBarcode(string $type = null): bool
+    {
+        if ($type) {
+            return $this->barcode()->where('type', $type)->exists();
+        }
+
+        return $this->barcode()->exists();
     }
 
     /**
