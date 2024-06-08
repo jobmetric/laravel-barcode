@@ -53,7 +53,7 @@ if (!function_exists('forgetAllBarcode')) {
      * @return array
      * @throws Throwable
      */
-    function forgetBarcode(Model $model): array
+    function forgetAllBarcode(Model $model): array
     {
         if (!in_array('JobMetric\Barcode\HasBarcode', class_uses($model))) {
             throw new ModelBarcodeTraiteNotFoundException(get_class($model));
