@@ -165,6 +165,58 @@ protected $listen = [
 
 The work is done, now when the BarcodeResource is called and if the ProductResource should be returned, the details of that resource will be displayed in the barcodeable attribute.
 
+## Barcode Types
+
+This package supports the following barcode types:
+
+- `code128`
+- `code39`
+- `code93`
+- `codabar`
+- `ean13`
+- `ean8`
+- `upc`
+- `upcext`
+- `isbn`
+- `datamatrix`
+- `pdf417`
+- `qrcode`
+- `itf14`
+- `interleaved2of5`
+- `postnet`
+- `msi`
+- `pharmacode`
+- `maxicode`
+- `aztec`
+- `code11`
+- `code128a`
+- `code128b`
+- `code128c`
+- `code39extended`
+- `code39mod43`
+- `code93extended`
+- `gs1_128`
+- `gs1_128composite`
+- `gs1_cc`
+- `gs1datamatrix`
+- `gs1datamatrixrectangular`
+- `gs1qrcode`
+
+## Events
+
+This package contains several events for which you can write a listener as follows
+
+| Event                | Description                                        |
+|----------------------|----------------------------------------------------|
+| `BarcodeStoredEvent` | This event is called after storing the barcode.    |
+| `BarcodeUpdateEvent` | This event is called after updating the barcode.   |
+| `BarcodeForgetEvent` | This event is called after forgetting the barcode. |
+
+
+## Contributing
+
+Thank you for considering contributing to the Laravel Barcode! The contribution guide can be found in the [CONTRIBUTING.md](https://github.com/jobmetric/laravel-barcode/blob/master/CONTRIBUTING.md).
+
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+The MIT License (MIT). Please see [License File](https://github.com/jobmetric/laravel-barcode/blob/master/LICENCE.md) for more information.
