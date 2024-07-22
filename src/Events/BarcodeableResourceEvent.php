@@ -2,8 +2,6 @@
 
 namespace JobMetric\Barcode\Events;
 
-use JobMetric\Barcode\Models\Barcode;
-
 class BarcodeableResourceEvent
 {
     /**
