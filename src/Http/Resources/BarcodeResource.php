@@ -12,6 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed type
  * @property mixed value
  * @property mixed created_at
+ *
  * @property mixed barcodeable_resource
  */
 class BarcodeResource extends JsonResource
