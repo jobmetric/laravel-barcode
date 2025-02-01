@@ -13,14 +13,14 @@ return [
     */
 
     "validation" => [
-        "barcode_not_found" => "The barcode not found.",
+        "barcode_not_found" => "بارکد یافت نشد.",
     ],
 
     "messages" => [
-        "created" => "The barcode was created successfully.",
-        "updated" => "The barcode was updated successfully.",
-        "deleted" => "The barcode was deleted successfully.",
-        "all_deleted" => "All barcodes were deleted successfully.",
+        "created" => "بارکد با موفقیت ایجاد شد.",
+        "updated" => "بارکد با موفقیت به‌روزرسانی شد.",
+        "deleted" => "بارکد با موفقیت حذف شد.",
+        "all_deleted" => "همه بارکدها با موفقیت حذف شدند.",
     ],
 
 ];

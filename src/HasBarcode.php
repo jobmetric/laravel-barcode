@@ -186,7 +186,7 @@ trait HasBarcode
         } else {
             return [
                 'ok' => false,
-                'message' => trans('barcode::base.validation.errors'),
+                'message' => trans('package-core::base.validation.errors'),
                 'errors' => [
                     trans('barcode::base.validation.barcode_not_found')
                 ],
@@ -207,7 +207,7 @@ trait HasBarcode
         if ($barcodes->isEmpty()) {
             return [
                 'ok' => false,
-                'message' => trans('barcode::base.validation.errors'),
+                'message' => trans('package-core::base.validation.errors'),
                 'errors' => [
                     trans('barcode::base.validation.barcode_not_found')
                 ],
